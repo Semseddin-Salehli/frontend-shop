@@ -1,0 +1,39 @@
+.navbar {
+    background-color: #1740d246;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav .nav-item {
+    width: 200px;
+}
+
+nav .nav-link {
+    font-size: 17px !important;
+    color: #fff !important;
+    font-family: "Poppins Black" !important;
+}
+
+nav a.btn {
+    transition: 0.4s all;
+    border-radius: 17px;
+}
+
+nav a.btn:hover {
+    transform: scale(1.05);
+}
+
+nav a .badge {
+    top: -7px !important;
+    left: -3px;
+    transform: rotate(15deg);
+    width: 20px;
+}
+
+nav .nav-link i {
+    position: relative;
+    right: 5px;
+    top: 2px;
+    font-size: 20px;
+}
