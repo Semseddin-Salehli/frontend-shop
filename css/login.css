@@ -41,9 +41,9 @@
     left: 300px;
 }
 
-.inputs-box button:last-child {
+.inputs-box #loginBtn {
     position: relative;
-    top: 100px;
+    top: 60px;
     left: 450px;
     font-size: 30px;
     font-weight: 500;
@@ -51,4 +51,11 @@
     border-radius: 8px;
     transform: rotate3d(1, 1, 1, 0deg);
     transition: 1s all;
+}
+
+.inputs-box .newAccount-box {
+    position: relative;
+    font-size: 30px;
+    color: #fff;
+    top: 150px;
 }
