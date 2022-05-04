@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Hesab Yarat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+    <script src="js/register.js" defer></script>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm">
+        <ul class="navbar-nav w-100 d-flex justify-content-around">
+            <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Əsas Səhifə">
+                <a class="nav-link btn btn-warning" href="index.html"><i class="fa-solid fa-house"></i>Əsas Səhifə</a>
+            </li>
+        </ul>
+    </nav>
+
+    
+    <div class="container-fluid">
+        <h1 class="text-center">HESAB YARAT</h1>
+        <div class="form-box">
+
+            <div class="form-group">
+                <label for="usernameInp">İstifadəçi adı : </label>
+                <input type="text" id="usernameInp" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="passwordInp">Şifrə : </label>
+                <input type="password" id="passwordInp" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="emailInp">E-poçt : </label>
+                <input type="email" id="emailInp" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="rePasswordInp">Yeniden şifrə : </label>
+                <input type="password" id="rePasswordInp" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="phoneInp">Telefon : </label>
+                <input type="text" id="phoneInp" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="nameInp">Ad : </label>
+                <input type="text" id="nameInp" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="surnameInp">Soyad : </label>
+                <input type="text" id="surnameInp" class="form-control">
+            </div>
+
+            <button class="btn btn-success w-25 btnRegister">Hesabı yarat</button>
+
+            <div class="alert alert-danger w-50 fade d-none"></div>
+
+            <div class="alert alert-success w-50 fade d-none">
+                <strong>Uğurlu qeydiyyat!</strong> Giriş səhifəsinə yönıəndirilirsiniz..
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
