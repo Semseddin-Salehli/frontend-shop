@@ -41,7 +41,7 @@ $('.btnRegister').click(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8024/compshop/users",
+            url: paths.mainPath + paths.registerPath,
             data: JSON.stringify(datas),
             contentType: "application/json",
             
@@ -78,6 +78,26 @@ $('.btnRegister').click(function () {
         }, 2500);
     }
 
-
-
 });
+
+function passOpen(value , i) {
+    if(value == 'first') {
+        $('#passwordInp').attr('type' , 'text');
+    } else if(value == 'second') {
+        $('#rePasswordInp').attr('type' , 'text');
+    }
+
+    $(i).attr('class' , 'fa-solid fa-eye');
+    $(i).attr('onclick' , `passClose("${value}" , this)`);
+}
+
+function passClose(value , i) {
+    if(value == 'first') {
+        $('#passwordInp').attr('type' , 'password');
+    } else if(value == 'second') {
+        $('#rePasswordInp').attr('type' , 'password');
+    }
+    
+    $(i).attr('class' , 'fa-solid fa-eye-slash');
+    $(i).attr('onclick' , `passOpen("${value}" , this)`);
+}

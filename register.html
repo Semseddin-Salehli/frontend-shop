@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
     <script src="js/register.js" defer></script>
+    <script src="js/common.js" defer></script>
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/register.css">
@@ -38,6 +39,7 @@
             <div class="form-group">
                 <label for="passwordInp">Şifrə : </label>
                 <input type="password" id="passwordInp" class="form-control">
+                <i onclick="passOpen('first' , this)" class="fa-solid fa-eye-slash"></i>
             </div>
 
             <div class="form-group">
@@ -48,6 +50,7 @@
             <div class="form-group">
                 <label for="rePasswordInp">Yeniden şifrə : </label>
                 <input type="password" id="rePasswordInp" class="form-control">
+                <i onclick="passOpen('second' , this)" class="fa-solid fa-eye-slash"></i>
             </div>
 
             <div class="form-group">

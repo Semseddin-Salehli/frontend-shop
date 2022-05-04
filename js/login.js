@@ -7,11 +7,11 @@ if(sessionStorage.getItem(btoa('auth')) != undefined) {
 }
 
 $('#loginBtn').click(function () {
-    $(this).css('transform', 'rotate3d(1, 1, 1, 360deg)');
+    $(this).css('transform', 'scale(0.9)');
 
     setTimeout(() => {
-        $(this).css('transform', 'rotate3d(1, 1, 1, 0deg)');
-    }, 1200);
+        $(this).css('transform', 'scale(1)');
+    }, 300);
 
     let username = $('#usernameInp').val();
     let password = $('#passwordInp').val();
@@ -21,7 +21,7 @@ $('#loginBtn').click(function () {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8024/compshop/authentications/login",
+        url: paths.mainPath + paths.loginPath,
         headers: {
             'Authorization': datas
         },
@@ -32,14 +32,28 @@ $('#loginBtn').click(function () {
             setTimeout(() => {
                 $(alertSuccess).attr('class' , 'alert alert-success alert-dismissible w-50 fade d-none');
                 window.location.href = 'index.html';
-            }, 1500);
+            }, 2000);
         },
         error : function (error) {
             $(alertError).attr('class' , 'alert alert-danger alert-dismissible w-50 fade show d-block');
 
             setTimeout(() => {
                 $(alertError).attr('class' , 'alert alert-danger alert-dismissible w-50 fade d-none');
-            }, 2000);
+            }, 2500);
         }
     });
 });
+
+function passOpen(i) {
+    $('#passwordInp').attr('type' , 'text');
+    
+    $(i).attr('class' , 'fa-solid fa-eye');
+    $(i).attr('onclick' , `passClose(this)`);
+}
+
+function passClose(i) {
+    $('#passwordInp').attr('type' , 'password');
+
+    $(i).attr('class' , 'fa-solid fa-eye-slash');
+    $(i).attr('onclick' , `passOpen(this)`);
+}

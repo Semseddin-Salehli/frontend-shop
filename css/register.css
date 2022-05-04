@@ -2,7 +2,7 @@
     background-image: url(../img/bg/background-1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 597px;
+    height: 600px;
 }
 
 .container-fluid h1:first-child {
@@ -31,4 +31,23 @@
     width: 47%;
     display: inline-block;
     margin-right: 35px;
+}
+
+.container-fluid .form-box .form-group:first-child {
+    position: relative;
+    top: -35px;
+}
+
+.container-fluid .form-box .form-group:nth-child(3) {
+    position: relative;
+    top: -35px;
+}
+
+.container-fluid .form-box .form-group i {
+    position: relative;
+    bottom: 33px;
+    left: 577px;
+    cursor: pointer;
+    color: black;
+    display: inline-block;
 }

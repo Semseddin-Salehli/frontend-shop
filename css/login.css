@@ -33,7 +33,7 @@
     position: relative;
     width: 880px;
     left: 300px;
-    top: 30px;
+    top: 10px;
 }
 
 .inputs-box .alert {
@@ -41,15 +41,26 @@
     left: 300px;
 }
 
+.inputs-box i {
+    position: relative;
+    bottom: 29px;
+    left: 625px;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    display: inline-block;
+}
+
 .inputs-box #loginBtn {
     position: relative;
-    top: 60px;
+    top: 20px;
     left: 450px;
     font-size: 30px;
     font-weight: 500;
     background-color: rgb(3, 209, 140);
     border-radius: 8px;
-    transform: rotate3d(1, 1, 1, 0deg);
+    transform: scale(1);
+    transform: rotate3d(1, 1, 1 0deg);
     transition: 1s all;
 }
 
@@ -57,5 +68,5 @@
     position: relative;
     font-size: 30px;
     color: #fff;
-    top: 150px;
+    top: 120px;
 }
