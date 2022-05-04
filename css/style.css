@@ -4,6 +4,10 @@
     background-size: cover;
 }
 
+.container-fluid h1 {
+    margin: 0;
+}
+
 #carousel {
     padding-left: 150px;
 }
