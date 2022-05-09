@@ -41,7 +41,7 @@ $('.btnRegister').click(function () {
 
         $.ajax({
             type: "POST",
-            url: paths.mainPath + paths.registerPath,
+            url: paths.mainPath + paths.usersPath,
             data: JSON.stringify(datas),
             contentType: "application/json",
             
