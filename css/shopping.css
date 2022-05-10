@@ -1,0 +1,51 @@
+.container-fluid {
+    background-image: url(../img/bg/background-4.png);
+    min-height: 597px;
+    background-size: contain;
+    font-family: sans-serif;
+}
+
+.card {
+    width: 400px;
+    height: 580px;
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    background-color: rgba(129, 10, 153, 0.705);
+}
+
+/* Card */
+
+.card {
+    font-size: 20px;
+}
+
+.card .card-img-top {
+    height: 350px !important;
+    width: 100%;
+}
+
+.card .badge {
+    font-size: 15px;
+}
+/* --- */
+
+/* Modal */
+
+.modal {
+    font-size: 25px;
+}
+
+.modal-dialog {
+    max-width: 900px;
+}
+
+.modal-content {
+    background-color: rgba(194, 1, 75, 0.836);
+}
+
+.modal-body img {
+    position: relative;
+    left: 200px;
+}
+/* --- */
