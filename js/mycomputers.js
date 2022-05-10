@@ -26,7 +26,7 @@ async function loadComputerDatas() {
 
     $.ajax({
         type: "GET",
-        url: paths.mainPath + paths.computersPath + `/${userId}`,
+        url: paths.mainPath + paths.computersPath + `/users/${userId}`,
         success: function (response) {
             let table = $('#tableBody');
             table.html('');
