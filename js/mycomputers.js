@@ -23,7 +23,6 @@ async function loadComputerDatas() {
         }
     });
 
-
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.computersPath + `/users/${userId}`,
@@ -57,7 +56,7 @@ async function addComp() {
     let priceInp = $('#priceInp').val();
     let contentInp = $('#contentInp').val();
     let newInp = $('#newInp').val();
-    let imgInp = $('#imgInp');
+    let imgInp = document.getElementById('imgInp').files[0];
     let ramInp = $('#ramInp').val();
     let cpuInp = $('#cpuInp').val();
     let dCapacityInp = $('#dCapacityInp').val();
@@ -79,72 +78,79 @@ async function addComp() {
         }
     });
 
-    let computerRequest = {
-        "brand": brandInp,
-        "model": modelInp,
-        "price": priceInp,
-        "ram": ramInp,
-        "cpu": cpuInp,
-        "compNew": newInp,
-        "content": contentInp,
-        "diskCapacity": dCapacityInp,
-        "diskType": dTypeInp,
-        "sellerName": sellerName,
-        "sellerPhone": sellerPhone,
-        "userId": String(userId)
-    }
-
     let alertError = $('.alert-danger');
     let alertSuccess = $('.alert-success');
 
     try {
+
+        if (imgInp == undefined) throw new Error("Lütfən şəkli düzgün seçin!");
+
+        let imgFormat = $(imgInp)[0].type;
+
+        if (imgFormat == 'image/png' || imgFormat == 'image/gif' 
+        || imgFormat == 'image/jfif' || imgFormat == 'image/jpeg' 
+        || imgFormat == 'image/svg+xml' || imgFormat == 'image/webp') {
+        } else throw new Error("Lütfən şəkli düzgün formatta seçin!");
+
+        let formData = new FormData();
+        formData.append("file" , imgInp);
+
+        let filePath = "";
+
+        await $.ajax({
+            type: "PUT",
+            url: paths.mainPath + paths.filePath,
+            data: formData,
+            processData : false,
+            mimeType : 'multipart/form-data',
+            contentType : false,
+            success: function (response) {
+                filePath = response;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+        let computerRequest = {
+            "brand": brandInp,
+            "model": modelInp,
+            "price": priceInp,
+            "ram": ramInp,
+            "cpu": cpuInp,
+            "compNew": newInp,
+            "content": contentInp,
+            "diskCapacity": dCapacityInp,
+            "diskType": dTypeInp,
+            "sellerName": sellerName,
+            "sellerPhone": sellerPhone,
+            "userId": String(userId),
+            "image": filePath
+        }
+
         for (let i = 0; i < Object.keys(computerRequest).length; i++) {
             let element = Object.values(computerRequest)[i];
             if (element == null || element == undefined || element.trim() == "") throw new Error("Lütfən boş yer saxlamayın!");
         }
 
-        if (imgInp.val() == "") throw new Error("Lütfən şəkli düzgün seçin!");
-
-        let imgFormat = $(imgInp).val();
-
-        if (imgFormat.endsWith('png') || imgFormat.endsWith('gif') || imgFormat.endsWith('pjp')
-            || imgFormat.endsWith('jpg')
-            || imgFormat.endsWith('pjpeg') || imgFormat.endsWith('jpeg') || imgFormat.endsWith('jfif')
-            || imgFormat.endsWith('svgz') || imgFormat.endsWith('svg') || imgFormat.endsWith('webp')) {
-        } else throw new Error("Lütfən şəkli düzgün formatta seçin!");
-
-
-        let compId = "";
-
         await $.ajax({
             type: "POST",
             url: paths.mainPath + paths.computersPath,
             data: JSON.stringify(computerRequest),
-            contentType: 'application/json',
+            contentType : 'application/json',
             success: function (response) {
-                compId = response;
+
             },
             error: function (error) {
                 console.log(error);
             }
         });
 
-        await $.ajax({
-            type: "PUT",
-            url: paths.mainPath + paths.filePath + `/computers/${compId}`,
-            data: imgInp,
-            Headers : {
-                'Content-Type' : 'multipart/form-data'
-            },
-            success: function (response) {
-                console.log(response);
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
+        $('#computerModal').modal('hide');
 
-        $(alertSuccess).attr('class', 'alert alert-success w-50 fade show d-block');
+        loadComputerDatas();
+
+        $(alertSuccess).attr('class', 'alert alert-success mt-2 w-50 fade show d-block');
 
         setTimeout(() => {
             $(alertSuccess).attr('class', 'alert alert-success w-50 fade d-none');
