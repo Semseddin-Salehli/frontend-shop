@@ -28,7 +28,7 @@
   </nav>
 
   <div class="container-fluid">
-    <button class="btn btn-info mt-2" data-toggle="modal" data-target="#computerModal"><i
+    <button class="btn btn-info mt-2" onclick="openComputerModal('add' , null)" data-toggle="modal" data-target="#computerModal"><i
         class="fa-solid fa-laptop-medical"></i> Yeni Kompüter</button>
     <button class="btn btn-success mt-2" onclick="exportTableToExcel()"><i class="fa-solid fa-file-excel"></i> Excelde
       bax</button>
@@ -58,7 +58,7 @@
         <div class="modal-content border-0">
 
           <div class="modal-header">
-            <h4 class="modal-title">Yeni Kompüter</h4>
+            <h4 class="modal-title"></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -83,7 +83,7 @@
                 <input type="text" id="contentInp" class="form-control">
               </div>
 
-              <div class="form-group d-inline-block">
+              <div class="form-group d-inline-block" style="position: relative;bottom: 30px;">
                 <label for="newInp">Yeni :</label>
                 <select id="newInp" class="form-control">
                   <option value="Bəli">Bəli</option>
@@ -91,10 +91,12 @@
                 </select>
               </div>
 
-              <div class="form-group d-inline-block ml-5">
+              <div class="form-group d-inline-block ml-5" id="imgFormGroup">
                 <label for="imgInp">Şəkli :</label>
-                <input type="file" id="imgInp" accept="image/png, image/gif, image/jpeg , image/svg+xml, image/webp"
+                <input type="file" id="imgInp" onchange="imgInpChanged()" accept="image/png, image/gif, image/jpeg , image/svg+xml, image/webp"
                   class="form-control">
+                  
+                <img width="50px" height="50px">
               </div>
 
               <div class="form-group d-inline-block">
@@ -118,12 +120,7 @@
               </div>
           </div>
 
-          <div class="modal-footer">
-            <div class="alert alert-danger w-50 fade d-none"></div>
-
-            <button class="btn btn-success w-25" onclick="addComp()"><i class="fa-solid fa-circle-plus mr-1"></i> Əlavə
-              et</button>
-          </div>
+          <div class="modal-footer"></div>
 
         </div>
       </div>
