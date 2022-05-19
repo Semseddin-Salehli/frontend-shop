@@ -1,9 +1,10 @@
 .container-fluid {
-    background-image: url(../img/bg/background-4.png);
+    background-image: linear-gradient(to right bottom, #dd01ff, #e600c5, #de0092, #cb0069, #b10649);
     min-height: 597px;
-    background-size: contain;
     font-family: sans-serif;
 }
+
+/* Card */
 
 .card {
     width: 400px;
@@ -12,12 +13,8 @@
     margin-right: 30px;
     margin-bottom: 20px;
     background-color: rgba(129, 10, 153, 0.705);
-}
-
-/* Card */
-
-.card {
     font-size: 20px;
+    overflow: hidden;
 }
 
 .card .card-img-top {
@@ -44,8 +41,82 @@
     background-color: rgba(194, 1, 75, 0.836);
 }
 
-.modal-body img {
+#compModal .modal-body img {
     position: relative;
     left: 200px;
 }
+
+#basketModal .modal-content {
+    background-color: rgba(145, 69, 217, 0.806);
+    min-width: 1100px;
+    position: relative;
+    right: 100px;
+}
+
+#basketModal .modal-dialog {
+    min-width: 300px;
+}
+
 /* --- */
+
+table input[type = "number"] {
+    outline: none;
+    border: 1px solid rgba(245, 133, 251, 0.824);
+    padding-left: 5px;
+}
+
+.yoursTag {
+    position: absolute;
+    width: 100px;
+    height: 24px;
+    font-family: cursive;
+    transform: rotate(-50deg);
+    right: 321px;
+    top: 20px;
+}
+
+/* LOADER */
+.loader {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    top: 70px;
+    left: 575px;
+}
+
+.loader .ball {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    animation: animationBall 0.5s alternate infinite;
+}
+
+.loader .ball:nth-child(2) {
+    animation-delay: .16s;
+}
+
+.loader .ball:nth-child(3) {
+    animation-delay: .32s;
+}
+
+@keyframes animationBall {
+    from {
+        transform: scaleX(1.25);
+    }
+    to {
+        transform: translateY(-50px) scaleX(1);
+    }
+}
+
+.loader p {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: auto;
+    color: rgb(226, 203, 203);
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
