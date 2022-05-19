@@ -3,5 +3,7 @@ var paths = {
     loginPath : "/authentications/login",
     usersPath : "/users",
     computersPath : "/computers",
-    filePath : "/file"
+    filePath : "/file",
+    basketPath : "/basket",
+    ordersPath : "/orders"
 }
