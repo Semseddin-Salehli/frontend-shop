@@ -17,17 +17,23 @@ async function loadOrder() {
     await $.ajax({
         type: "GET",
         url: paths.mainPath + paths.usersPath + `/${username}`,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
             userId = response.id
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
-
+    
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.ordersPath + `/users/${userId}`,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 $(tBody).append(`
@@ -45,7 +51,7 @@ async function loadOrder() {
             }
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 }
@@ -56,11 +62,14 @@ async function exportTableToExcel() {
     await $.ajax({
         type: "GET",
         url: paths.mainPath + paths.ordersPath + `/users/${userId}`,
+        headers : {
+            "Authorization" : auth
+        },
         success: function (response) {
             rsp = response;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 

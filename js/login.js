@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
-if(sessionStorage.getItem(btoa('auth')) != undefined) {
+if (sessionStorage.getItem(btoa('auth')) != undefined) {
     window.location.href = 'index.html';
 }
 
@@ -15,7 +15,7 @@ $('#loginBtn').click(function () {
 
     let username = $('#usernameInp').val();
     let password = $('#passwordInp').val();
-    let datas    = "Basic " + btoa(`${username}:${password}`);
+    let datas = "Basic " + btoa(`${username}:${password}`);
     let alertError = $('.alert-danger');
     let alertSuccess = $('.alert-success');
 
@@ -26,34 +26,36 @@ $('#loginBtn').click(function () {
             'Authorization': datas
         },
         success: function (response) {
-            $(alertSuccess).attr('class' , 'alert alert-success alert-dismissible w-50 fade show d-block');
-            sessionStorage.setItem(btoa('auth') , datas);
+            $(alertSuccess).attr('class', 'alert alert-success alert-dismissible w-50 fade show d-block');
+            sessionStorage.setItem(btoa('auth'), datas);
 
             setTimeout(() => {
-                $(alertSuccess).attr('class' , 'alert alert-success alert-dismissible w-50 fade d-none');
+                $(alertSuccess).attr('class', 'alert alert-success alert-dismissible w-50 fade d-none');
                 window.location.href = 'index.html';
             }, 2000);
         },
-        error : function (error) {
-            $(alertError).attr('class' , 'alert alert-danger alert-dismissible w-50 fade show d-block');
+        error: function (xhr) {
+            if (xhr.status == 401) {
+                $(alertError).attr('class', 'alert alert-danger alert-dismissible w-50 fade show d-block');
 
-            setTimeout(() => {
-                $(alertError).attr('class' , 'alert alert-danger alert-dismissible w-50 fade d-none');
-            }, 2500);
+                setTimeout(() => {
+                    $(alertError).attr('class', 'alert alert-danger alert-dismissible w-50 fade d-none');
+                }, 2500);
+            }
         }
     });
 });
 
 function passOpen(i) {
-    $('#passwordInp').attr('type' , 'text');
-    
-    $(i).attr('class' , 'fa-solid fa-eye');
-    $(i).attr('onclick' , `passClose(this)`);
+    $('#passwordInp').attr('type', 'text');
+
+    $(i).attr('class', 'fa-solid fa-eye');
+    $(i).attr('onclick', `passClose(this)`);
 }
 
 function passClose(i) {
-    $('#passwordInp').attr('type' , 'password');
+    $('#passwordInp').attr('type', 'password');
 
-    $(i).attr('class' , 'fa-solid fa-eye-slash');
-    $(i).attr('onclick' , `passOpen(this)`);
+    $(i).attr('class', 'fa-solid fa-eye-slash');
+    $(i).attr('onclick', `passOpen(this)`);
 }
