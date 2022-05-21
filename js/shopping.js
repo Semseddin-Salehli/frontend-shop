@@ -6,7 +6,7 @@ if (sessionStorage.getItem(btoa('auth')) == undefined) {
     window.location.href = 'login.html';
 }
 
-const auth = "Basic " + btoa(`${username}:${password}`);
+const auth = sessionStorage.getItem(btoa('auth'));
 
 function loadComputers() {
     $('.loader').remove();
