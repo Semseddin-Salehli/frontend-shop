@@ -6,6 +6,8 @@ if (sessionStorage.getItem(btoa('auth')) == undefined) {
     window.location.href = 'login.html';
 }
 
+const auth = sessionStorage.getItem(btoa('auth'));
+
 function loadComputers() {
     $('.loader').remove();
     $('.container-fluid').css('background-image', 'linear-gradient(to left bottom, #dd01ff, #e600c5, #de0092, #cb0069, #b10649)')
@@ -13,6 +15,9 @@ function loadComputers() {
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.computersPath,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
 
             for (let i = 0; i < response.length; i++) {
@@ -54,7 +59,7 @@ function loadComputers() {
 
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 }
@@ -68,11 +73,14 @@ function getUserIdByUsername() {
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.usersPath + `/${username}`,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
             userId = response.id;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 
@@ -84,11 +92,14 @@ async function getBasketsByUserId() {
     await $.ajax({
         type: "GET",
         url: paths.mainPath + paths.basketPath + `/users/${userId}`,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
             data = response;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     })
     return data;
@@ -128,12 +139,15 @@ function addBasket(compId, thiss) {
         type: "POST",
         url: paths.mainPath + paths.basketPath,
         data: JSON.stringify(datas),
+        headers : {
+            "Authorization" : auth
+        },
         contentType: 'application/json',
         success: function (response) {
             basketNumber();
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 
@@ -156,11 +170,14 @@ async function deleteBasketById(id) {
         await $.ajax({
             type: "DELETE",
             url: paths.mainPath + paths.basketPath + `/${id}`,
+            headers: {
+                "Authorization" : auth
+            },
             success: function (response) {
                 basketNumber();
             },
             error: function (error) {
-                console.log(error);
+                alert("Xəta!" + error.message);
             }
         });
 
@@ -203,12 +220,15 @@ async function applyBasket() {
             type: "POST",
             url: paths.mainPath + paths.ordersPath,
             data: JSON.stringify(orderRequest),
+            headers: {
+                "Authorization" : auth
+            },
             contentType : "application/json",
             success: function (response) {
                 
             },
             error: function (error) {
-                console.log(error);
+                alert("Xəta!" + error.message);
             }
         });
     }
@@ -221,13 +241,16 @@ function deleteAllBasketsByUserId() {
     $.ajax({
         type: "DELETE",
         url: paths.mainPath + paths.basketPath + `/users/${userId}`,
+        headers : {
+            "Authorization" : auth
+        },
         success: function (response) {
             loadBasketInf();
             $('#basketModal').modal('hide');
             $('#basketNumber').html('0');
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 }
@@ -246,12 +269,15 @@ function updateBasket(basketId, compId, thisInputId) {
         type: "PUT",
         url: paths.mainPath + paths.basketPath + `/${basketId}`,
         data: JSON.stringify(datas),
+        headers: {
+            "Authorization" : auth
+        },
         contentType: 'application/json',
         success: function (response) {
             loadBasketInf();
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message)
         }
     });
 }
@@ -260,11 +286,14 @@ function basketNumber() {
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.basketPath + `/users/${userId}`,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
             $('#basketNumber').html(response.length)
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 }
@@ -274,6 +303,9 @@ function viewCompDetails(compId) {
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.computersPath + `/${compId}`,
+        headers: {
+            "Authorization" : auth
+        },
         success: function (response) {
 
             $('.modal-body').html(`
@@ -291,7 +323,7 @@ function viewCompDetails(compId) {
     `);
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 

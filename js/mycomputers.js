@@ -18,17 +18,23 @@ async function loadComputerDatas() {
     await $.ajax({
         type: "GET",
         url: paths.mainPath + paths.usersPath + `/${username}`,
+        headers : {
+            "Authorization" : auth
+        },
         success: function (response) {
             userId = response.id;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.computersPath + `/users/${userId}`,
+        headers : {
+            "Authorization" : auth
+        },
         success: function (response) {
             let table = $('#tableBody');
             table.html('');
@@ -48,7 +54,7 @@ async function loadComputerDatas() {
 
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 }
@@ -110,12 +116,15 @@ async function addOrUpdateMethod(method, compId) {
                 type: 'POST',
                 url: paths.mainPath + paths.computersPath,
                 data: JSON.stringify(computerRequest),
+                headers : {
+                    "Authorization" : auth
+                },
                 contentType: 'application/json',
                 success: function (response) {
                     emptyInputs();
                 },
                 error: function (error) {
-                    console.log(error);
+                    alert("Xəta!" + error.message);
                 }
             });
         } else if (method == 'update') {
@@ -132,12 +141,15 @@ async function addOrUpdateMethod(method, compId) {
                 type: 'PUT',
                 url: paths.mainPath + paths.computersPath + `/${compId}`,
                 data: JSON.stringify(computerRequest),
+                headers : {
+                    "Authorization" : auth
+                },
                 contentType: 'application/json',
                 success: function (response) {
                     emptyInputs();
                 },
                 error: function (error) {
-                    console.log(error);
+                    alert("Xəta!" + error.message);
                 }
             });
         }
@@ -170,6 +182,9 @@ async function uploadImage(formData) {
     await $.ajax({
         type: "POST",
         url: paths.mainPath + paths.filePath,
+        headers : {
+            "Authorization" : auth
+        },
         data: formData,
         processData: false,
         mimeType: 'multipart/form-data',
@@ -178,7 +193,7 @@ async function uploadImage(formData) {
             filePath = response;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 
@@ -193,19 +208,25 @@ async function deleteComp(compId) {
         $.ajax({
             type: "DELETE",
             url: paths.mainPath + paths.basketPath + `/computers/${compId}`,
+            headers : {
+                "Authorization" : auth
+            },
             error: function (error) {
-                console.log(error);
+                alert("Xəta!" + error.message);
             }
         });
 
         await $.ajax({
             type: "DELETE",
             url: paths.mainPath + paths.computersPath + `/${compId}`,
+            headers : {
+                "Authorization" : auth
+            },
             success: function (response) {
                 window.location.reload();
             },
             error: function (error) {
-                console.log(error);
+                alert("Xəta!"+ error.message);
             }
         });
     }
@@ -239,6 +260,9 @@ async function openComputerModal(process, compId) {
         await $.ajax({
             type: "GET",
             url: paths.mainPath + paths.computersPath + `/${compId}`,
+            headers : {
+                "Authorization" : auth
+            },
             success: function (response) {
                 $('#brandInp').val(response.brand);
                 $('#modelInp').val(response.model);
@@ -253,7 +277,7 @@ async function openComputerModal(process, compId) {
                 imgPath = response.image;
             },
             error: function (error) {
-                console.log(error);
+                alert("Xəta!" + error.message);
             }
         });
 
@@ -286,11 +310,14 @@ async function exportTableToExcel() {
     await $.ajax({
         type: "GET",
         url: paths.mainPath + paths.computersPath + `/users/${userId}`,
+        headers : {
+            "Authorization" : auth
+        },
         success: function (response) {
             rsp = response;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 
@@ -315,13 +342,16 @@ function getUserInfoByUsername() {
     $.ajax({
         type: "GET",
         url: paths.mainPath + paths.usersPath + `/${username}`,
+        headers : {
+            "Authorization" : auth
+        },
         success: function (response) {
             userId = response.id;
             sellerPhone = response.phone;
             sellerName = response.name;
         },
         error: function (error) {
-            console.log(error);
+            alert("Xəta!" + error.message);
         }
     });
 }
